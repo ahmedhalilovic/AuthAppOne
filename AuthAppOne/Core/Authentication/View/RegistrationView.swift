@@ -27,7 +27,7 @@ struct RegistrationView: View {
             // Form fields
             VStack(spacing: 24) {
                 InputView(text: $email,
-                          title: "Email Address",
+                          title: "Email Address is here",
                           placeholder: "name@example.com")
                 .autocapitalization(.none)
                 
