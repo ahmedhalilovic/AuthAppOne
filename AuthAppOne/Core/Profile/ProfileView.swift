@@ -49,6 +49,11 @@ struct ProfileView: View {
                             .font(.subheadline)
                             .foregroundColor(.gray)
                     }
+                    Button {
+                        
+                    } label: {
+                        SettingsRowView(imageName: "person.circle.fill", title: "Profile description", tintColor: Color(.orange))
+                    }
                 }
                 
                 Section("Account") {
