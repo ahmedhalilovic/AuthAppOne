@@ -9,9 +9,12 @@ import SwiftUI
 
 struct ProfileView: View {
     @EnvironmentObject var viewModel: AuthViewModel
-    
+    @State private var isProfileDescriptioniewPressed = false
+    @State private var isAboutTheAppPressed = false
+
     var body: some View {
         if let user = viewModel.currentUser {
+            
             List {
                 Section {
                     HStack {
@@ -50,10 +53,17 @@ struct ProfileView: View {
                             .foregroundColor(.gray)
                     }
                     Button {
-                        
+                        isProfileDescriptioniewPressed = true
                     } label: {
                         SettingsRowView(imageName: "person.circle.fill", title: "Profile description", tintColor: Color(.orange))
                     }
+                    
+                    Button {
+                        isAboutTheAppPressed = true
+                    } label: {
+                        SettingsRowView(imageName: "person", title: "About the app", tintColor: Color(.green))
+                    }
+
                 }
                 
                 Section("Account") {
@@ -70,8 +80,19 @@ struct ProfileView: View {
                     }
                 }
             }
+            
+            //Using navigationView to enable navigation
+            .navigationTitle("Profile description")
+            .sheet(isPresented: $isProfileDescriptioniewPressed) {
+                ProfileDescriptionView()
+            }
+            .sheet(isPresented: $isAboutTheAppPressed) {
+                AboutTheAppView()
+            }
+            
         }
     }
+    
 }
 
 struct ProfileView_Previews: PreviewProvider {
